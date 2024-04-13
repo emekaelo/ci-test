@@ -41,7 +41,8 @@ jobs:
         if: success()
         with:
           severity: info
-          details: Test Succeeded!
+          details: Build Successful! 🎉
+          text: Hey @survivingreact
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Trigger deployment failure
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
@@ -50,7 +51,8 @@ jobs:
         if: failure()
         with:
           severity: error
-          details: Test Failed!
+          details: Build Failed 😱!
+          text: Hey @survivingreact
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
   tag_release:

@@ -37,13 +37,13 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{secrets.RENDER_SERVICE_ID}}?key=${{secrets.RENDER_API_KEY}}
-      - uses: rjstone/discord-webhook-notify@v1.0.0
+      - uses: rjstone/discord-webhook-notify@v1.0.4
         if: success()
         with:
           severity: info
           details: Deployment Successful! 🎉
           webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-      - uses: rjstone/discord-webhook-notify@v1.0.0
+      - uses: rjstone/discord-webhook-notify@v1.0.4
         if: failure()
         with:
           severity: error
